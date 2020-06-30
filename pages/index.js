@@ -1,5 +1,9 @@
 import Head from 'next/head'
+import Layout, { siteTitle } from '../components/layout'
+import utilStyles from '../styles/utils.module.css'
 
+/*
+import Link from 'next/link'
 export default function Home() {
   return (
     <div className="container">
@@ -11,6 +15,12 @@ export default function Home() {
       <main>
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
+        </h1>
+        <h1 className="title">
+          Read <Link href="/posts/first-post"><a>this page!</a></Link>
+        </h1>
+        <h1 className="title">
+          A TAG <a href="/posts/first-post">first-post</a>
         </h1>
 
         <p className="description">
@@ -205,5 +215,23 @@ export default function Home() {
         }
       `}</style>
     </div>
+  )
+}
+*/
+
+export default function Home() {
+  return (
+    <Layout home>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
+      <section className={utilStyles.headingMd}>
+        <p>[Your Self Introduction]</p>
+        <p>
+          (This is a sample website - you’ll be building a site like this on{' '}
+          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+        </p>
+      </section>
+    </Layout>
   )
 }
