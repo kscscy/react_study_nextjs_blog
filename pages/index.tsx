@@ -4,8 +4,17 @@ import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
+import { GetStaticProps } from 'next'
 
-export default function Home({ allPostsData }) {
+export default function Home({ 
+  allPostsData 
+}: {
+  allPostsData: {
+    date: string
+    title: string
+    id: string
+  }[]
+}) {
   return (
     <Layout home>
       <Head>
@@ -22,13 +31,7 @@ export default function Home({ allPostsData }) {
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
-            // <li className={utilStyles.listItem} key={id}>
-            //   {title}
-            //   <br />
-            //   {id}
-            //   <br />
-            //   {date}
-            // </li>
+
             <li className={utilStyles.listItem} key={id}>
               <Link href="/posts/[id]" as={`/posts/${id}`}>
                 <a>{title}</a>
@@ -50,7 +53,9 @@ export default function Home({ allPostsData }) {
 //It will never be run on the client - side.
 //It won’t even be included in the JS bundle for the browser.
 //That means you can write code such as direct database queries without them being sent to browsers.
-export async function getStaticProps() {
+
+// export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async() => {
   const allPostsData = getSortedPostsData()
   return {
     props: {
